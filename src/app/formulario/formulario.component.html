@@ -1,0 +1,68 @@
+<div class="container">
+    <div class="m-4 col-lg-6"> 
+    <h2>{{title}}</h2>
+    </div>
+  <form
+    [formGroup]="formularioContacto"
+    (ngSubmit)="submit()"
+    class="m-4 col-lg-6"> 
+    <br>
+    <div class="form-group">
+        <label for="nombre" class="form-label">Nombre</label>
+        <input
+          type="text"
+          id="nombre"
+          formControlName="nombre"
+          class="form-control"
+        />
+        <div *ngIf="formularioContacto.get('nombre')?.errors?.['required'] && !formularioContacto.get('nombre')?.pristine" class="alert alert-danger"
+          >El nombre debe estar</div
+        >
+        <div *ngIf="formularioContacto.get('nombre')?.errors?.['minlegth'] && !formularioContacto.get('nombre')?.pristine" class="alert alert-danger"
+          >Mínimo de 3 caracteres</div
+        >
+      </div>
+      <br>
+    <div class="form-group">
+        <label for="telefono" class="form-label">telefono</label>
+        <input
+          type="number"
+          id="telefono"
+          formControlName="telefono"
+          class="form-control"
+        />
+      </div>
+      <br>
+    <div class="form-group">
+      <label for="email" class="form-label">Email</label>
+      <input
+        type="text"
+        id="email"
+        formControlName="email"
+        class="form-control"
+      />
+      <div *ngIf="formularioContacto.get('email')?.errors?.['email'] && !formularioContacto.get('email')?.pristine" class="alert alert-danger"
+        >El email debe ser válido</div
+      >
+      <div *ngIf="formularioContacto.get('email')?.errors?.['required'] && !formularioContacto.get('email')?.pristine" class="alert alert-danger"
+        >El email no puede estar vacio</div
+      >
+    </div>
+    <br>
+    <div class="form-group">
+      <label for="mensaje" class="form-label">Mensaje</label>
+      <textarea
+        type="text"
+        id="mensaje"
+        formControlName="mensaje"
+        class="form-control"
+      ></textarea>
+      <div
+        *ngIf="formularioContacto.get('mensaje')?.errors?.['maxlength'] && !formularioContacto.get('mensaje')?.pristine" class="alert alert-danger"
+        >El número maximo de caracteres es 100</div
+      >
+    </div>
+    <br>
+    <button type="submit" class="btn btn-primary">submit</button>
+  </form>
+</div>
